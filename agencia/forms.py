@@ -12,7 +12,7 @@ class AgendaForm(forms.ModelForm):
 
     class Meta:
         model = Trip_Agenda
-        fields = ('id_paciente', 'trip_destination', 'transferred', 'payment_methods',)
+        fields = ('id_client', 'trip_destination', 'transferred', 'payment_methods',)
         widgets = {
             'travel_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
