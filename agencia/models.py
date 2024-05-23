@@ -8,7 +8,7 @@ class Clients_Register(models.Model):
     creation_date = models.DateTimeField(auto_now = False, auto_now_add = False, default=timezone.now())
 
     def __str__(self):
-        return self.nome
+        return self.name
 
 class Trip_Agenda(models.Model):
     trip_destination =  models.CharField(max_length=100)
