@@ -19,3 +19,17 @@ def client_register(request):
 
 def register_sucess(request):
     return render(request, 'agencia/sucessfull_register.html', {})
+
+def travel_register(request):        
+    if request.method == "POST":
+        form = AgendaForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('sucessfull_booking',)
+    else:
+        form = AgendaForm()
+    return render(request, 'agencia/travel_register.html', {'form': form})     
+
+def sucessfull_booking(request):
+    return render(request, 'agencia/sucessfull_booking.html', {})  
