@@ -1,0 +1,24 @@
+{% extends 'agencia/base.html' %}
+
+{% block content %}
+
+
+        <main>
+            <div>
+               
+                <h4>
+                    Trip booked successfully! Congratulations
+                    <br>
+                    <a href="{% url 'travel_register' %}"> Book your another travel here!</a>
+                </h4>
+            </div>
+            <br>
+            <div>
+                <h4>
+                    Back home! 👉 <a href="{% url 'index' %}"> click here!</a>
+                </h4>
+            </div>
+        </main>
+
+
+{% endblock %}
