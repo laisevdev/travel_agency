@@ -15,12 +15,12 @@ class Trip_Agenda(models.Model):
     transferred =  models.CharField(max_length=100)
     travel_date = models.DateTimeField(auto_now = False, auto_now_add = False, null=True, blank=True)
     PAYMENTS_CHOICES = [
-        ('PIX', 'PIX'),
-        ('BOLETO', 'BOLETO'),
-        ('TRANSFERÊNCIA BANCÁRIA', 'TRANSFERÊNCIA BANCÁRIA'),
-        ('CARTÃO DE CRÉDITO', 'CARTÃO DE CRÉDITO'),
-        ('CARTÃO DE DÉBITO', 'CARTÃO DE DÉBITO'),  
-        ('BITCOIN OU CRIPTOMOEDAS', 'BITCOIN OU CRIPTOMOEDAS'),        
+        ('pix', 'PIX'),
+        ('boleto', 'BOLETO'),
+        ('transferencia_bancaria', 'TRANSFERÊNCIA BANCÁRIA'),
+        ('cartao_de_credito', 'CARTÃO DE CRÉDITO'),
+        ('cartao_de_debito', 'CARTÃO DE DÉBITO'),  
+        ('bitcoin_ou_criptomoedas', 'BITCOIN OU CRIPTOMOEDAS'),        
     ]
     payment_methods = models.CharField(max_length=30, choices=PAYMENTS_CHOICES)
     creation_date = models.DateTimeField(auto_now = False, auto_now_add = False, default=timezone.now())
