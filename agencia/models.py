@@ -13,7 +13,7 @@ class Clients_Register(models.Model):
 class Trip_Agenda(models.Model):
     trip_destination =  models.CharField(max_length=100)
     transferred =  models.CharField(max_length=100)
-    travel_date = models.DateTimeField(auto_now = False, auto_now_add = False, null=True, blank=True)
+    travel_date = models.DateTimeField(null=True, blank=True)
     PAYMENTS_CHOICES = [
         ('pix', 'PIX'),
         ('boleto', 'BOLETO'),
@@ -23,7 +23,7 @@ class Trip_Agenda(models.Model):
         ('bitcoin_ou_criptomoedas', 'BITCOIN OU CRIPTOMOEDAS'),        
     ]
     payment_methods = models.CharField(max_length=30, choices=PAYMENTS_CHOICES)
-    creation_date = models.DateTimeField(auto_now = False, auto_now_add = False, default=timezone.now())
+    creation_date = models.DateTimeField(default=timezone.now)
     id_client = models.ForeignKey(Clients_Register, on_delete=models.CASCADE)
 
     def created_at(self):
