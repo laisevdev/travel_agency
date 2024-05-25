@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 class Clients_Register(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=60)
     cpf = models.CharField(max_length=14, unique=True)
     rg = models.CharField(max_length=12, unique=True)
     creation_date = models.DateTimeField(auto_now = False, auto_now_add = False, default=timezone.now())
