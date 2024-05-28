@@ -17,6 +17,6 @@ class AgendaForm(forms.ModelForm):
             'travel_date': forms.DateInput(attrs={'type': 'date'}),
         }
 
-     
-       
+class SearchClientForm(forms.Form):
+    query = forms.CharField(max_length=100, label='Buscar por RG ou CPF')
         
