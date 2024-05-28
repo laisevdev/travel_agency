@@ -1,0 +1,20 @@
+{% extends 'agencia/base.html' %}
+
+{% block content %}
+    <h1>Search here Destinations or Tranferreds</h1>
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if results is not None %}
+        <h2>Results </h2>
+        <ul>
+            {% for trip in results %}
+                <li>Destination:{{ trip.trip_destination }} - Transferred: {{ trip.transferred }}- Trip Date: {{trip.travel_date}} - Payment Method: {{trip.payment_methods}}.</li>
+            {% empty %}
+                <li>None travel localized.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
