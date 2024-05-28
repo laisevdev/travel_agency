@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, AgendaForm, SearchClientForm
+from .forms import RegisterForm, AgendaForm, SearchClientForm, SearchTravelForm
 from .models import Clients_Register, Trip_Agenda
 from django.contrib import messages
 
@@ -54,13 +54,19 @@ def sucessfull_booking(request):
 
 def search(request):
     form = SearchClientForm()
-    resultados = None
+    results = None
+    trips = None
 
     if request.method == 'GET':
         form = SearchClientForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
-            resultados = Clients_Register.objects.filter(cpf__icontains=query) | Clients_Register.objects.filter(rg__icontains=query)
+           
+            results = Clients_Register.objects.filter(cpf__icontains=query) | Clients_Register.objects.filter(rg__icontains=query)
+            if results.exists():
+                
+                client = results.first()
+                trips = Trip_Agenda.objects.filter(id_client=client)
 
-    return render(request, 'agencia/search.html', {'form': form, 'resultados': resultados})
+    return render(request, 'agencia/search.html', {'form': form, 'results': results, 'trips': trips})
 
