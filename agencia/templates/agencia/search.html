@@ -1,0 +1,41 @@
+{% extends 'agencia/base.html' %} {% block content %}
+
+<main>
+    <h1>Search for RG or CPF</h1>
+        <form method="get">
+            {{ form.as_p }}
+            <button type="submit">Search</button>
+        </form>
+
+    {% if results is not None %}
+    <h2>Client IpiTravels</h2>
+
+    <ul>
+        {% for client in results %}
+        <li>
+            Client Name: {{ client.name }} - CPF: {{ client.cpf }} - RG: {{ client.rg }}
+        </li>
+
+        {% empty %}
+        <p>None result for your search.</p>
+        {% endfor %}
+    </ul>
+    
+    {% endif %} {% if trips %}
+    <h2>Trips Client</h2>
+    <ul>
+        {% for trip in trips %}
+            <li>
+                Destination: {{ trip.trip_destination }}, Date: {{ trip.travel_date }},
+                Payment Method: {{ trip.payment_methods }}
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h4>
+        Search for destinations! 👉
+        <a href="{%  url 'travel_search' %}"> Destinations 😎🍹✈️!</a>
+    </h4>
+</main>
+{% endblock %}
