@@ -18,5 +18,8 @@ class AgendaForm(forms.ModelForm):
         }
 
 class SearchClientForm(forms.Form):
-    query = forms.CharField(max_length=100, label='Buscar por RG ou CPF')
+    query = forms.CharField(max_length=100, label='Enter RG or CPF')
+
+class SearchTravelForm(forms.Form):
+    query = forms.CharField(max_length=100, label='Enter Destinations or Tranferreds')
         
