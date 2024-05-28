@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, AgendaForm
+from .forms import RegisterForm, AgendaForm, SearchClientForm
 from .models import Clients_Register, Trip_Agenda
 from django.contrib import messages
 
@@ -28,6 +28,10 @@ def client_register(request):
 def register_sucess(request):
     return render(request, 'agencia/sucessfull_register.html', {})
 
+#def show_clients(request):
+#    clientes = Clients_Register.objects.all()
+#    return render(request, 'agencia/clients_list.html', {'clientes': clientes})
+
 def travel_register(request):        
     if request.method == "POST":
         form = AgendaForm(request.POST)
@@ -46,3 +50,17 @@ def travel_register(request):
 
 def sucessfull_booking(request):
     return render(request, 'agencia/sucessfull_booking.html', {})  
+
+
+def search(request):
+    form = SearchClientForm()
+    resultados = None
+
+    if request.method == 'GET':
+        form = SearchClientForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            resultados = Clients_Register.objects.filter(cpf__icontains=query) | Clients_Register.objects.filter(rg__icontains=query)
+
+    return render(request, 'agencia/search.html', {'form': form, 'resultados': resultados})
+
