@@ -8,4 +8,5 @@ urlpatterns = [
     path('travelregister/', views.travel_register, name='travel_register'),
     path('sucessbook/', views.sucessfull_booking, name='sucessfull_booking'),
     path('showclients/', views.search, name='search'),
+    path('showdestinations/', views.travel_search, name='travel_search'),
 ]
