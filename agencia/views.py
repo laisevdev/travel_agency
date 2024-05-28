@@ -70,3 +70,15 @@ def search(request):
 
     return render(request, 'agencia/search.html', {'form': form, 'results': results, 'trips': trips})
 
+
+def travel_search(request):
+    form = SearchTravelForm()
+    results = None
+
+    if request.method == 'GET':
+        form = SearchTravelForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = Trip_Agenda.objects.filter(trip_destination__icontains=query) | Trip_Agenda.objects.filter(transferred__icontains=query)
+
+    return render(request, 'agencia/travel_search.html', {'form': form, 'results': results})
